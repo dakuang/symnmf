@@ -1,6 +1,6 @@
 # Symmetric NMF for graph clustering
 
-Symmetric nonnegative matrix factorization (SymNMF) is an unsupervised algorithm for graph clustering, and has found numerous use cases with itself or its extensions [(Google Scholar)](https://scholar.google.com/scholar?oi=bibs&hl=en&cites=5171938689932689716), many of which are in bioinformatics and genomic study.
+**Symmetric nonnegative matrix factorization (SymNMF)** is an unsupervised algorithm for graph clustering, and has found numerous use cases with itself or its extensions [(Google Scholar)](https://scholar.google.com/scholar?oi=bibs&hl=en&cites=5171938689932689716), many of which are in bioinformatics and genomic study.
 
 This Matlab package is developed for the following paper:
 ```
@@ -16,6 +16,8 @@ Journal of Global Optimization, 62(3):545-574, 2015.
 ```
 Please cite this paper if you find the code useful.
 
+## Problem Statement
+
 SymNMF is defined as:
 ```
     min_H f(H) = ||A - HH'||_F^2 subject to H >= 0
@@ -23,22 +25,6 @@ SymNMF is defined as:
 where the input A is an N-by-N symmetric matrix containing pairwise similarity values, and the output H is an N-by-K nonnegative matrix indicating clustering assignment. SymNMF uses the same input similarity matrix A as in spectral clustering, but imposes different constraint on H.
 
 All these Matlab functions are documented. To get started, run the script `test.m` Please find the helper texts at the beginning of each M-file for more options.
-
-A summary of the functions in this package is listed below:
-
-User functions (API):
-* `symnmf_newton.m`: Newton-like algorithm for SymNMF, accepting a similarity matrix as input
-* `symnmf_anls.m`: ANLS algorithm for SymNMF, accepting a similarity matrix as input
-* `symnmf_cluster.m`: A wrapper for graph clustering, accepting a data matrix as input
-
-Auxiliary files:
-* `scale_dist3.m`: Computes the affinity matrix of a dense graph with Gaussian similarity
-* `scale_dist3_knn.m`: Computes the affinity matrix of a sparse graph with Gaussian similarity
-* `inner_product_knn.m`: Computes the affinity matrix of a sparse graph with inner product similarity
-* `dist2.m`: Computes a matrix of squared Euclidean distance values
-* `nnlsm_blockpivot.m`: The block pivoting algorithm for nonnegative least squares (courtesy of Jingu Kim)
-* `graph.data`: A simple graph clustering example
-* `test.m`: A test script running on the graph.data example
 
 ## Basic usage
 
@@ -54,7 +40,21 @@ To run SymNMF on a data matrix for graph clustering:
 ```
 idx = symnmf_cluster(X, k)
 ```
-Please refer to the documentation for more options. 
+Please refer to the documentation for more options. A summary of the functions in this package is listed below:
+
+User functions (API):
+* `symnmf_newton.m`: Newton-like algorithm for SymNMF, accepting a similarity matrix as input
+* `symnmf_anls.m`: ANLS algorithm for SymNMF, accepting a similarity matrix as input
+* `symnmf_cluster.m`: A wrapper for graph clustering, accepting a data matrix as input
+
+Auxiliary files:
+* `scale_dist3.m`: Computes the affinity matrix of a dense graph with Gaussian similarity
+* `scale_dist3_knn.m`: Computes the affinity matrix of a sparse graph with Gaussian similarity
+* `inner_product_knn.m`: Computes the affinity matrix of a sparse graph with inner product similarity
+* `dist2.m`: Computes a matrix of squared Euclidean distance values
+* `nnlsm_blockpivot.m`: The block pivoting algorithm for nonnegative least squares (courtesy of Jingu Kim)
+* `graph.data`: A simple graph clustering example
+* `test.m`: A test script running on the graph.data example
 
 ## Which algorithm to choose
 
